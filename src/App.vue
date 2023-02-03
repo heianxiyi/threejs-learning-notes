@@ -7,12 +7,19 @@ const router = useRouter();
 <template>
   <div class="w-100vw h-100vh flex">
     <SideBar />
-    <div class="flex-1 flex items-center justify-center">
+    <div class="relative flex-1 flex items-center justify-center">
       <router-view></router-view>
+      <div
+        class="absolute cursor-pointer w-40px h-40px bg-white flex items-center justify-center border-rd-100% right-15px bottom-15px shadow"
+      >
+        <div class="i-ic-baseline-code text-22px text-#444"></div>
+      </div>
     </div>
     <div
-      class="i-ic-round-home text-28px text-#bbb fixed right-10px top-10px cursor-pointer"
+      class="fixed right-10px top-10px cursor-pointer w-40px h-40px bg-white flex items-center justify-center border-rd-100% right-15px bottom-15px shadow"
       @click="router.push('/')"
-    ></div>
+    >
+      <div class="i-ic-round-home text-28px text-#444"></div>
+    </div>
   </div>
 </template>
