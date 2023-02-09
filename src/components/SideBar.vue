@@ -1,31 +1,18 @@
 <template>
-  <div class="w-300px h-100% b-r-solid border-r border-#444 flex flex-col">
+  <div class="w-300px h-100% b-r-solid border-r border-#444 flex flex-col flex-shrink-0">
     <div class="text-24px font-bold text-#049ef4 p-15px">three.js</div>
-    <div
-      class="py-10px b-t b-b border-t-solid border-b-solid border-#444 flex items-center px-10px group"
-    >
-      <div
-        class="i-ic-baseline-search text-24px text-#bbb group-focus-within:!hidden"
-        :class="{ '!hidden': displayValue != '' }"
-      ></div>
-      <input
-        ref="refInput"
-        :value="displayValue"
-        @input="onChange"
-        type="text"
-        class="h-24px text-16px flex-1 border-transparent bg-transparent text-#bbb font-bold focus-visible:outline-none"
-      />
-      <div
-        class="i-ic-outline-close text-24px text-#bbb ml-5px cursor-pointer hidden"
-        :class="[
-          { '!block': displayValue != '' },
-          { 'group-focus-within:!block': displayValue === '' },
-        ]"
-        @click="
-          displayValue = '';
-          refInput?.focus();
-        "
-      ></div>
+    <div class="py-10px b-t b-b border-t-solid border-b-solid border-#444 flex items-center px-10px group">
+      <div class="i-ic-baseline-search text-24px text-#bbb group-focus-within:!hidden"
+        :class="{ '!hidden': displayValue != '' }"></div>
+      <input ref="refInput" :value="displayValue" @input="onChange" type="text"
+        class="h-24px text-16px flex-1 border-transparent bg-transparent text-#bbb font-bold focus-visible:outline-none" />
+      <div class="i-ic-outline-close text-24px text-#bbb ml-5px cursor-pointer hidden" :class="[
+        { '!block': displayValue != '' },
+        { 'group-focus-within:!block': displayValue === '' },
+      ]" @click="
+  displayValue = '';
+refInput?.focus();
+"></div>
     </div>
     <div v-if="list" class="overflow-y-auto flex-1">
       <div class="px-15px" v-for="group in data">
@@ -37,19 +24,11 @@
             class="mb-16px overflow-hidden group cursor-pointer border-rd-4px border-3 border-solid border-transparent"
             :class="{
               '!border-#049ef4 border-3 border-solid': route.name === item,
-            }"
-            v-for="item in group.data"
-            @click="go(item)"
-          >
+            }" v-for="item in group.data" @click="go(item)">
             <div class="leading-0">
-              <img
-                class="w-100% object-cover h-150px"
-                :src="`/screenshots/${item}.jpg`"
-              />
+              <img class="w-100% object-cover h-150px" :src="`/screenshots/${item}.jpg`" />
             </div>
-            <div
-              class="px-10px py-8px text-#bbb bg-#2e2e2e font-bold group-hover:text-#049ef4"
-            >
+            <div class="px-10px py-8px text-#bbb bg-#2e2e2e font-bold group-hover:text-#049ef4">
               {{ item.replace(group.name, "").slice(1).replaceAll("_", " / ") }}
             </div>
           </div>

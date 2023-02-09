@@ -3,7 +3,13 @@ import defaultView from "./components/defaultView.vue";
 import WebglAnimationKeyframes from "./views/webgl_animation_keyframes.vue";
 import WebglTitanCard from "./views/webgl_titan_card.vue";
 import AddPostprocessingBloom from "./views/add_postprocessing_bloom.vue";
+import AddRandomBox from "./views/add_random_box.vue";
 import NewPage from "./views/new_page.vue";
+import AddAnimationDemo1 from "./views/add_animation_demo1.vue";
+import AddFlowerRain from "./views/add_flower_rain.vue";
+import AddBirthdayCake from "./views/add_birthday_cake.vue";
+import AddPanorama from "./views/add_panorama.vue";
+import AddHouse from "./views/add_house.vue";
 export const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -31,6 +37,36 @@ export const router = createRouter({
       path: "/add_postprocessing_bloom",
       name: "add_postprocessing_bloom",
       component: AddPostprocessingBloom,
+    },
+    {
+      path: "/add_random_box",
+      name: "add_random_box",
+      component: AddRandomBox,
+    },
+    {
+      path: "/add_animation_demo1",
+      name: "add_animation_demo1",
+      component: AddAnimationDemo1,
+    },
+    {
+      path: "/add_flower_rain",
+      name: "add_flower_rain",
+      component: AddFlowerRain,
+    },
+    {
+      path: "/add_birthday_cake",
+      name: "add_birthday_cake",
+      component: AddBirthdayCake,
+    },
+    {
+      path: "/add_panorama",
+      name: "add_panorama",
+      component: AddPanorama,
+    },
+    {
+      path: "/add_house",
+      name: "add_house",
+      component: AddHouse,
     },
   ],
 });

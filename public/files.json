@@ -1,6 +1,12 @@
 {
 	"add": [
 		"add_new_page",
+		"add_house",
+		"add_panorama",
+		"add_birthday_cake",
+		"add_flower_rain",
+		"add_animation_demo1",
+		"add_random_box",
 		"add_titan_card",
 		"add_postprocessing_bloom"
 	],

@@ -5,7 +5,7 @@
 <script setup lang='ts'>
 import * as THREE from 'three';
 import { GUI } from 'dat.gui'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
@@ -13,12 +13,17 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass';
 
 const box = ref<HTMLElement>();
+const gui = ref();
+
+onUnmounted(() => {
+    gui.value.destroy()
+})
 
 onMounted(() => {
     const width = box.value?.offsetWidth || 0;
     const height = box.value?.offsetHeight || 0;
     const container = box.value
-    const gui = new GUI()
+    gui.value = new GUI()
 
     let object: THREE.Group;
 
@@ -50,9 +55,8 @@ onMounted(() => {
 
     // texture
     const textureLoader = new THREE.TextureLoader(manager);
-    const texture = textureLoader.load('/public/blue.png');
+    const texture = textureLoader.load('/public/examples/textures/blue.png');
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-    console.log(texture, 444);
 
 
     new OBJLoader(manager)
@@ -114,19 +118,19 @@ onMounted(() => {
     scene.add(mesh)
 
 
-    gui.add(params, 'exposure', 0.1, 2).onChange(function (value) {
+    gui.value.add(params, 'exposure', 0.1, 2).onChange(function (value: any) {
         renderer.toneMappingExposure = Math.pow(value, 4.0);
     });
 
-    gui.add(params, 'bloomThreshold', 0.0, 1.0).onChange(function (value) {
+    gui.value.add(params, 'bloomThreshold', 0.0, 1.0).onChange(function (value: any) {
         bloomPass.threshold = Number(value);
     });
 
-    gui.add(params, 'bloomStrength', 0.0, 3.0).onChange(function (value) {
+    gui.value.add(params, 'bloomStrength', 0.0, 3.0).onChange(function (value: any) {
         bloomPass.strength = Number(value);
     });
 
-    gui.add(params, 'bloomRadius', 0.0, 1.0).step(0.01).onChange(function (value) {
+    gui.value.add(params, 'bloomRadius', 0.0, 1.0).step(0.01).onChange(function (value: any) {
         bloomPass.radius = Number(value);
     });
 

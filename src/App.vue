@@ -7,7 +7,7 @@ const router = useRouter();
 <template>
   <div class="w-100vw h-100vh flex">
     <SideBar />
-    <div class="relative flex-1 flex items-center justify-center">
+    <div class="relative flex items-center justify-center flex-1 w-0">
       <router-view></router-view>
       <div
         class="absolute cursor-pointer w-40px h-40px bg-white flex items-center justify-center border-rd-100% right-15px bottom-15px shadow">
