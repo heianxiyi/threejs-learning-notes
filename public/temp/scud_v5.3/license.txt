@@ -1,0 +1,11 @@
+Model Information:
+* title:	Scud V5.3
+* source:	https://sketchfab.com/3d-models/scud-v53-7d6901a3393049bd8e466d839cd7e2a3
+* author:	joshuahardy (https://sketchfab.com/joshuahardy)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Scud V5.3" (https://sketchfab.com/3d-models/scud-v53-7d6901a3393049bd8e466d839cd7e2a3) by joshuahardy (https://sketchfab.com/joshuahardy) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

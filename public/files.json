@@ -1,6 +1,9 @@
 {
 	"add": [
 		"add_new_page",
+		"add_model_missile_carrier",
+		"add_rickAndMorty",
+		"add_animation_rotation_star",
 		"add_house",
 		"add_panorama",
 		"add_birthday_cake",

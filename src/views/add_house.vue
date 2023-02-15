@@ -3,13 +3,16 @@
 </template>
     
 <script setup lang='ts'>
-import { onMounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 // import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import TWEEN from '@tweenjs/tween.js'
 
 const container = ref<HTMLElement>()
+let onMouseClick: any;
+let doorplank: any;
 
 onMounted(() => {
     const w = container.value?.offsetWidth || 0;
@@ -20,13 +23,11 @@ onMounted(() => {
 
     const camera = new THREE.PerspectiveCamera(75, w / h, 1, 1000)
     camera.lookAt(scene.position)
-    camera.position.set(97, 40, 24)
+    camera.position.set(160, 60, -4);
     // camera.position.set(26, 27, 40)
 
-    window = {
-        ...window,
-        camera: camera
-    } as any
+    (window as any).camera = camera
+
 
     const renderer = new THREE.WebGL1Renderer();
     renderer.setSize(w, h);
@@ -53,6 +54,7 @@ onMounted(() => {
         const meshBasicMaterial = new THREE.MeshBasicMaterial({ map: texture })
         const grass = new THREE.Mesh(geometry, meshBasicMaterial);
         grass.rotation.x = -0.5 * Math.PI;
+        grass.name = '草地'
         scene.add(grass)
     }
 
@@ -67,6 +69,7 @@ onMounted(() => {
         const floor = new THREE.Mesh(geometry, meshBasicMaterial);
         floor.rotation.x = -0.5 * Math.PI;
         floor.position.y = 0.1;
+        floor.name = '地板'
         scene.add(floor)
     }
 
@@ -88,7 +91,7 @@ onMounted(() => {
         var material = new THREE.MeshBasicMaterial({ map: texture });
 
         const sideWall = new THREE.Mesh(extrudeGeometry, material);
-
+        sideWall.name = '侧墙'
         house.add(sideWall);
 
         return sideWall;
@@ -113,6 +116,7 @@ onMounted(() => {
         const BackWall = new THREE.Mesh(extrudeGeometry, material);
         BackWall.rotation.y = -0.5 * Math.PI;
         BackWall.position.x = -30;
+        BackWall.name = '后墙'
         house.add(BackWall);
     }
 
@@ -151,6 +155,7 @@ onMounted(() => {
         const FontWall = new THREE.Mesh(extrudeGeometry, material);
         FontWall.rotation.y = -0.5 * Math.PI;
         FontWall.position.x = 30;
+        FontWall.name = '前墙'
         house.add(FontWall);
     }
 
@@ -179,6 +184,7 @@ onMounted(() => {
         geometry.position.x = 30;
         geometry.position.z = -10;
         geometry.position.y = 15;
+        geometry.name = '床'
         house.add(geometry);
     }
 
@@ -206,8 +212,96 @@ onMounted(() => {
         geometry.rotation.y = 0.5 * Math.PI;
         geometry.position.x = 30;
         geometry.position.z = 30;
+        geometry.name = '门框'
         house.add(geometry);
     }
+
+    function createDoorPlank() {
+        const loader = new THREE.TextureLoader()
+        const doorplankgeometry = new THREE.BoxGeometry(18, 28, 1);
+        const doorplankmaterial = new THREE.MeshPhongMaterial({
+            map: loader.load('/public/temp/door-textures.png')
+        })
+        doorplankgeometry.translate(9, 14, 0)
+        doorplank = new THREE.Mesh(doorplankgeometry, doorplankmaterial)
+        doorplank.name = '门板'
+        doorplank.position.x = 30
+        doorplank.position.y = 1
+        doorplank.position.z = 29
+        doorplank.rotation.y = Math.PI * 0.5;
+        scene.add(doorplank)
+    }
+
+    let raycaster = new THREE.Raycaster();
+    let mouse = new THREE.Vector2();
+    //通过射线与对象相交来获取对象
+    function getIntersects(event: MouseEvent) {
+        event.preventDefault();
+        // 通过鼠标点击位置,计算出 raycaster 所需点的位置,以屏幕为中心点,范围 -1 到 1
+        //这里的container就是画布所在的div，也就是说，这个是要拿整个scene所在的容器来界定的
+        if (!container.value) return
+        let getBoundingClientRect = container.value!.getBoundingClientRect()
+
+        mouse.x = ((event.clientX - getBoundingClientRect.left) / container.value!.offsetWidth) * 2 - 1;
+        mouse.y = -((event.clientY - getBoundingClientRect.top) / container.value!.offsetHeight) * 2 + 1;
+        //通过鼠标点击的位置(二维坐标)和当前相机的矩阵计算出射线位置
+        raycaster.setFromCamera(mouse, camera);
+        // 获取与射线相交的对象数组，其中的元素按照距离排序，越近的越靠前
+        var intersects = raycaster.intersectObjects(scene.children);
+        if (intersects[0].object.name === '门板') {
+            if (doorstart) {
+                const t = new TWEEN.Tween({ y: 0 });
+                t.to({ y: Math.PI * 0.5 }, 1000);
+                t.easing(TWEEN.Easing.Bounce.Out);
+                t.onUpdate(function (object) {
+                    doorplank.rotation.y = object.y
+                }).onComplete(() => {
+                    doorstart = false
+                });
+                t.start()
+            } else {
+                const t = new TWEEN.Tween({ y: Math.PI * 0.5 });
+                t.to({ y: 0 }, 1000);
+                t.easing(TWEEN.Easing.Bounce.Out);
+                t.onUpdate(function (object) {
+                    doorplank.rotation.y = object.y
+                }).onComplete(() => {
+                    doorstart = true
+                });
+                t.start()
+            }
+        }
+    }
+
+    let doorstart = false;
+
+    document.onkeydown = function (event: KeyboardEvent) {
+        if (event.key === 'o' && !doorstart) {
+            const t = new TWEEN.Tween({ y: Math.PI * 0.5 });
+            t.to({ y: 0 }, 1000);
+            t.easing(TWEEN.Easing.Bounce.Out);
+            t.onUpdate(function (object) {
+                doorplank.rotation.y = object.y
+            }).onComplete(() => {
+                doorstart = true
+            });
+            t.start()
+        }
+        if (event.key === 'c' && doorstart) {
+            const t = new TWEEN.Tween({ y: 0 });
+            t.to({ y: Math.PI * 0.5 }, 1000);
+            t.easing(TWEEN.Easing.Bounce.Out);
+            t.onUpdate(function (object) {
+                doorplank.rotation.y = object.y
+            }).onComplete(() => {
+                doorstart = false
+            });
+            t.start()
+        }
+    }
+
+
+    window.addEventListener('click', getIntersects, false)
 
     function creatRoof() {
         const geometry = new THREE.BoxGeometry(37, 92, 2)
@@ -228,6 +322,7 @@ onMounted(() => {
         roof.position.z = 0.9
         roof.position.x = 16
         roof.position.y = 43
+        roof.name = '屋顶'
         house.add(roof)
 
         return roof
@@ -244,6 +339,7 @@ onMounted(() => {
         createFontWall()
         createWindow()
         createDoor()
+        createDoorPlank()
         creatRoof()
         const roof2 = creatRoof()
         roof2.rotation.x = Math.PI / 2;
@@ -259,6 +355,7 @@ onMounted(() => {
         loader.load("/public/examples/textures/house/bed.glb", (gltf) => {
             const model = gltf.scene;
             model.position.set(0, 0, -25);
+            model.name = '床'
             // 设置模型缩放
             model.scale.set(18, 18, 18);
             scene.add(model);
@@ -279,10 +376,14 @@ onMounted(() => {
     function render() {
         // const delta = clock.getDelta();
         controls.update();
+        TWEEN.update()
         renderer.render(scene, camera);
         requestAnimationFrame(render)
     }
     render()
+})
+onUnmounted(() => {
+    window.removeEventListener('dblclick', onMouseClick)
 })
 </script>
     

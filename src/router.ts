@@ -10,6 +10,9 @@ import AddFlowerRain from "./views/add_flower_rain.vue";
 import AddBirthdayCake from "./views/add_birthday_cake.vue";
 import AddPanorama from "./views/add_panorama.vue";
 import AddHouse from "./views/add_house.vue";
+import AddAnimationRotationStar from "./views/add_animation_rotation_star.vue";
+import AddRickandmorty from "./views/add_rickAndMorty.vue";
+import AddModelMissileCarrier from "./views/add_model_missile_carrier.vue";
 export const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -67,6 +70,21 @@ export const router = createRouter({
       path: "/add_house",
       name: "add_house",
       component: AddHouse,
+    },
+    {
+      path: "/add_animation_rotation_star",
+      name: "add_animation_rotation_star",
+      component: AddAnimationRotationStar,
+    },
+    {
+      path: "/add_rickAndMorty",
+      name: "add_rickAndMorty",
+      component: AddRickandmorty,
+    },
+    {
+      path: "/add_model_missile_carrier",
+      name: "add_model_missile_carrier",
+      component: AddModelMissileCarrier,
     },
   ],
 });
