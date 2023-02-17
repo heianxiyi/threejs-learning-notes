@@ -20,7 +20,7 @@ onMounted(() => {
     // scene.background = new THREE.Color(0xbbbbbb)
     const camera = new THREE.PerspectiveCamera(4, w / h)
     camera.lookAt(scene.position)
-    camera.position.set(20, 100, 170);
+    camera.position.set(196, 113, -194);
 
     const axesHelper = new THREE.AxesHelper(10)
     scene.add(axesHelper);
@@ -65,15 +65,16 @@ onMounted(() => {
     //     scene.add(model)
     // })
     loader.load('/temp/buk_missile_system/scene.gltf', (gltf) => {
-        console.log(gltf, 44);
         const model = gltf.scene
         scene.add(model)
-    })
+    });
     // loader.load('/temp/desert_scud_missile_launcher.glb', (gltf) => {
     //     console.log(gltf, 44);
     //     const model = gltf.scene
     //     scene.add(model)
     // })
+
+    (window as any).camera = camera;
 
     function render() {
         renderer.render(scene, camera)

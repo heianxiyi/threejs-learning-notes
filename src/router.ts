@@ -13,6 +13,7 @@ import AddHouse from "./views/add_house.vue";
 import AddAnimationRotationStar from "./views/add_animation_rotation_star.vue";
 import AddRickandmorty from "./views/add_rickAndMorty.vue";
 import AddModelMissileCarrier from "./views/add_model_missile_carrier.vue";
+import AddFireRing from "./views/add_fire_ring.vue";
 export const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -85,6 +86,11 @@ export const router = createRouter({
       path: "/add_model_missile_carrier",
       name: "add_model_missile_carrier",
       component: AddModelMissileCarrier,
+    },
+    {
+      path: "/add_fire_ring",
+      name: "add_fire_ring",
+      component: AddFireRing,
     },
   ],
 });
