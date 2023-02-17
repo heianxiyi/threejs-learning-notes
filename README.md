@@ -1,4 +1,9 @@
-# Vue 3 + Typescript + Vite + TroisJS
+# Three.js learning notes
 
-This template should help get you started developing with Vue 3 and Typescript in Vite.
+主要基于 `Three.js` 的前端学习 Demo 页面开发集合。主要使用了 `Vue3 + vite + typescript`
 
+访问地址：
+
+> preview available
+
+- <https://www.baidu.com>
