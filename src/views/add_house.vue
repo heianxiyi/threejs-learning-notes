@@ -10,6 +10,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import TWEEN from '@tweenjs/tween.js'
 
+(window as any).THREE = THREE;
+
 const container = ref<HTMLElement>()
 let onMouseClick: any;
 let doorplank: any;
@@ -19,15 +21,14 @@ onMounted(() => {
     const h = container.value?.offsetHeight || 0;
 
     const scene = new THREE.Scene()
-    scene.fog = new THREE.Fog(0xffffff, 10, 1500)
+    scene.fog = new THREE.Fog(0xffffff, 10, 1500);
+    (window as any).scene = scene;
+
 
     const camera = new THREE.PerspectiveCamera(75, w / h, 1, 1000)
     camera.lookAt(scene.position)
     camera.position.set(160, 60, -4);
     // camera.position.set(26, 27, 40)
-
-    (window as any).camera = camera
-
 
     const renderer = new THREE.WebGL1Renderer();
     renderer.setSize(w, h);
@@ -248,6 +249,7 @@ onMounted(() => {
         raycaster.setFromCamera(mouse, camera);
         // 获取与射线相交的对象数组，其中的元素按照距离排序，越近的越靠前
         var intersects = raycaster.intersectObjects(scene.children);
+        if (!intersects.length) return
         if (intersects[0].object.name === '门板') {
             if (doorstart) {
                 const t = new TWEEN.Tween({ y: 0 });
