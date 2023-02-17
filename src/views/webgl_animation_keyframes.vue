@@ -76,13 +76,13 @@ onMounted(() => {
 
   // 创建解压器，并设置路径，另外gltf后面一定要加斜杠
   const dracoLoader = new DRACOLoader();
-  dracoLoader.setDecoderPath("/public/examples/jsm/libs/draco/gltf/");
+  dracoLoader.setDecoderPath("/examples/jsm/libs/draco/gltf/");
 
   // 创建模型加载器
   const loader = new GLTFLoader();
   loader.setDRACOLoader(dracoLoader);
   loader.load(
-    "/public/examples/models/gltf/LittlestTokyo.glb",
+    "/examples/models/gltf/LittlestTokyo.glb",
     function (gltf) {
       const model = gltf.scene;
       // 设置模型配置

@@ -44,10 +44,10 @@ onMounted(() => {
         const light = new THREE.AmbientLight('white')
         scene.add(light)
 
-        const cake1 = new THREE.TextureLoader().load('/public/examples/textures/cake/cake1.png')
-        const cake2 = new THREE.TextureLoader().load('/public/examples/textures/cake/cake2.png')
-        const cake3 = new THREE.TextureLoader().load('/public/examples/textures/cake/cake3.png')
-        const cake4 = new THREE.TextureLoader().load('/public/examples/textures/cake/cake4.png')
+        const cake1 = new THREE.TextureLoader().load('/examples/textures/cake/cake1.png')
+        const cake2 = new THREE.TextureLoader().load('/examples/textures/cake/cake2.png')
+        const cake3 = new THREE.TextureLoader().load('/examples/textures/cake/cake3.png')
+        const cake4 = new THREE.TextureLoader().load('/examples/textures/cake/cake4.png')
 
         const cakeMaterial1 = new THREE.MeshBasicMaterial({ map: cake1 })
         const cakeMaterial2 = new THREE.MeshBasicMaterial({ map: cake2 })
@@ -76,7 +76,7 @@ onMounted(() => {
         cakePart4.translateY(-120)
         cake.add(cakePart4)
 
-        fontLoader.load('/public/examples/fonts/guang.typeface.json', (font) => {
+        fontLoader.load('/examples/fonts/guang.typeface.json', (font) => {
             const textGeoMetry = new TextGeometry('赛赛', {
                 font,
                 size: 30,
@@ -106,6 +106,4 @@ onMounted(() => {
 })
 </script>
     
-<style>
-
-</style>
+<style></style>

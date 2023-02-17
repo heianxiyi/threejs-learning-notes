@@ -38,11 +38,11 @@ onMounted(() => {
 
 
     const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath("/public/examples/jsm/libs/draco/gltf/");
+    dracoLoader.setDecoderPath("/examples/jsm/libs/draco/gltf/");
 
     const loader = new GLTFLoader();
     loader.setDRACOLoader(dracoLoader);
-    loader.load("/public/examples/models/add/nissan_titan.glb", (gltf) => {
+    loader.load("/examples/models/add/nissan_titan.glb", (gltf) => {
         const model = gltf.scene;
         model.position.set(1, 3, 0);
         model.scale.set(0.01, 0.01, 0.01);
@@ -58,6 +58,4 @@ onMounted(() => {
 })
 </script>
     
-<style>
-
-</style>
+<style></style>

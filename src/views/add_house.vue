@@ -46,7 +46,7 @@ onMounted(() => {
     const house = new THREE.Group();
 
     function createGrassland() {
-        const texture = new THREE.TextureLoader().load('/public/examples/textures/house/grassland.png');
+        const texture = new THREE.TextureLoader().load('/examples/textures/house/grassland.png');
         texture.wrapS = THREE.RepeatWrapping
         texture.wrapT = THREE.RepeatWrapping
         texture.repeat.set(100, 100)
@@ -61,7 +61,7 @@ onMounted(() => {
 
     function createFloor() {
         const geometry = new THREE.PlaneGeometry(60, 90);
-        const texture = new THREE.TextureLoader().load('/public/examples/textures/house/floor.png');
+        const texture = new THREE.TextureLoader().load('/examples/textures/house/floor.png');
         texture.wrapS = THREE.RepeatWrapping
         texture.wrapT = THREE.RepeatWrapping
         texture.repeat.set(4, 12)
@@ -85,7 +85,7 @@ onMounted(() => {
 
         const extrudeGeometry = new THREE.ExtrudeGeometry(shape);
 
-        const texture = new THREE.TextureLoader().load('/public/examples/textures/house/wall.png');
+        const texture = new THREE.TextureLoader().load('/examples/textures/house/wall.png');
         texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
         texture.repeat.set(0.03, 0.02);
 
@@ -108,7 +108,7 @@ onMounted(() => {
 
         const extrudeGeometry = new THREE.ExtrudeGeometry(shape);
 
-        const texture = new THREE.TextureLoader().load('/public/examples/textures/house/wall.png');
+        const texture = new THREE.TextureLoader().load('/examples/textures/house/wall.png');
         texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
         texture.repeat.set(0.03, 0.02);
 
@@ -147,7 +147,7 @@ onMounted(() => {
 
         const extrudeGeometry = new THREE.ExtrudeGeometry(shape);
 
-        const texture = new THREE.TextureLoader().load('/public/examples/textures/house/wall.png');
+        const texture = new THREE.TextureLoader().load('/examples/textures/house/wall.png');
         texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
         texture.repeat.set(0.03, 0.02);
 
@@ -221,7 +221,7 @@ onMounted(() => {
         const loader = new THREE.TextureLoader()
         const doorplankgeometry = new THREE.BoxGeometry(18, 28, 1);
         const doorplankmaterial = new THREE.MeshPhongMaterial({
-            map: loader.load('/public/temp/door-textures.png')
+            map: loader.load('/temp/door-textures.png')
         })
         doorplankgeometry.translate(9, 14, 0)
         doorplank = new THREE.Mesh(doorplankgeometry, doorplankmaterial)
@@ -309,7 +309,7 @@ onMounted(() => {
         const geometry = new THREE.BoxGeometry(37, 92, 2)
 
         const colorMaterial = new THREE.MeshBasicMaterial({ color: 'grey' })
-        const texture = new THREE.TextureLoader().load('/public/examples/textures/house/tile.png')
+        const texture = new THREE.TextureLoader().load('/examples/textures/house/tile.png')
         texture.rotation = Math.PI * 0.5
         texture.wrapS = THREE.RepeatWrapping
         texture.wrapT = THREE.RepeatWrapping
@@ -354,7 +354,7 @@ onMounted(() => {
 
     function createBed() {
         const loader = new GLTFLoader()
-        loader.load("/public/examples/textures/house/bed.glb", (gltf) => {
+        loader.load("/examples/textures/house/bed.glb", (gltf) => {
             const model = gltf.scene;
             model.position.set(0, 0, -25);
             model.name = '床'
@@ -389,6 +389,4 @@ onUnmounted(() => {
 })
 </script>
     
-<style>
-
-</style>
+<style></style>

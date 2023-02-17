@@ -50,11 +50,11 @@ onMounted(() => {
 
     // texture
     const textureLoader = new THREE.TextureLoader(manager);
-    const texture = textureLoader.load('/public/examples/textures/blue.png');
+    const texture = textureLoader.load('/examples/textures/blue.png');
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 
     const loader = new OBJLoader(manager);
-    loader.load('/public/examples/models/obj/male02/male02.obj', function (obj) {
+    loader.load('/examples/models/obj/male02/male02.obj', function (obj) {
         object = obj
     });
 
@@ -105,6 +105,4 @@ onMounted(() => {
 })
 </script>
     
-<style>
-
-</style>
+<style></style>

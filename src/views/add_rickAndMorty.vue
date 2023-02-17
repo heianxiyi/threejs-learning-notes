@@ -97,16 +97,16 @@ onMounted(() => {
                 value: 0.0,
             },
             perlinnoise: {
-                value: textureLoader.load('/public/examples/textures/RickAndMorty/perlinnoise.png'),
+                value: textureLoader.load('/examples/textures/RickAndMorty/perlinnoise.png'),
             },
             sparknoise: {
-                value: textureLoader.load('/public/examples/textures/RickAndMorty/sparknoise.png'),
+                value: textureLoader.load('/examples/textures/RickAndMorty/sparknoise.png'),
             },
             waterturbulence: {
-                value: textureLoader.load('/public/examples/textures/RickAndMorty/waterturbulence.png'),
+                value: textureLoader.load('/examples/textures/RickAndMorty/waterturbulence.png'),
             },
             noiseTex: {
-                value: textureLoader.load('/public/examples/textures/RickAndMorty/noise.png'),
+                value: textureLoader.load('/examples/textures/RickAndMorty/noise.png'),
             },
             color5: {
                 value: new THREE.Vector3(...options.color5),
@@ -180,14 +180,14 @@ onMounted(() => {
 
     // 使用 dracoLoader 加载用blender压缩过的模型
     const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath('/public/examples/jsm/libs/draco/');
+    dracoLoader.setDecoderPath('/examples/jsm/libs/draco/');
     dracoLoader.setDecoderConfig({ type: 'js' });
     const loader = new GLTFLoader(loadingManager);
     loader.setDRACOLoader(dracoLoader);
 
     // 模型加载
     let model: { rotation: { x: number; z: number; }; position: { z: number; }; } | null = null;
-    loader.load('/public/examples/models/rickAndMorty.glb', (mesh: { scene: THREE.Object3D<THREE.Event>; }) => {
+    loader.load('/examples/models/rickAndMorty.glb', (mesh: { scene: THREE.Object3D<THREE.Event>; }) => {
         if (mesh.scene) {
             mesh.scene.scale.set(.02, .02, .02);
             mesh.scene.position.x = -.5;

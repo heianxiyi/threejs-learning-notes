@@ -25,12 +25,12 @@ onMounted(() => {
     const controls = new OrbitControls(camera, renderer.domElement)
 
     const urls = [
-        "/public/examples/textures/panorama/home.left.jpg",
-        "/public/examples/textures/panorama/home.right.jpg",
-        "/public/examples/textures/panorama/home.top.jpg",
-        "/public/examples/textures/panorama/home.bottom.jpg",
-        "/public/examples/textures/panorama/home.front.jpg",
-        "/public/examples/textures/panorama/home.back.jpg",
+        "/examples/textures/panorama/home.left.jpg",
+        "/examples/textures/panorama/home.right.jpg",
+        "/examples/textures/panorama/home.top.jpg",
+        "/examples/textures/panorama/home.bottom.jpg",
+        "/examples/textures/panorama/home.front.jpg",
+        "/examples/textures/panorama/home.back.jpg",
     ]
     const cubeTexture = new THREE.CubeTextureLoader().load(urls);
     scene.background = cubeTexture;
@@ -57,6 +57,4 @@ onMounted(() => {
 
 </script>
     
-<style>
-
-</style>
+<style></style>

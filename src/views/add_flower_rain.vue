@@ -31,11 +31,11 @@ onMounted(() => {
 
     const petal = new THREE.Group()
 
-    const f1 = new THREE.TextureLoader().load('/public/examples/textures/flower/flower1.png')
-    const f2 = new THREE.TextureLoader().load('/public/examples/textures/flower/flower2.png')
-    const f3 = new THREE.TextureLoader().load('/public/examples/textures/flower/flower3.png')
-    const f4 = new THREE.TextureLoader().load('/public/examples/textures/flower/flower4.png')
-    const f5 = new THREE.TextureLoader().load('/public/examples/textures/flower/flower5.png')
+    const f1 = new THREE.TextureLoader().load('/examples/textures/flower/flower1.png')
+    const f2 = new THREE.TextureLoader().load('/examples/textures/flower/flower2.png')
+    const f3 = new THREE.TextureLoader().load('/examples/textures/flower/flower3.png')
+    const f4 = new THREE.TextureLoader().load('/examples/textures/flower/flower4.png')
+    const f5 = new THREE.TextureLoader().load('/examples/textures/flower/flower5.png')
     const imglist = [f1, f2, f3, f4, f5]
 
     for (let i = 0; i < 400; i++) {
@@ -82,6 +82,4 @@ onMounted(() => {
 })
 </script>
     
-<style>
-
-</style>
+<style></style>

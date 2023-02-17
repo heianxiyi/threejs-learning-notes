@@ -56,20 +56,20 @@ onMounted(() => {
 
     const loader = new GLTFLoader()
     const dracoLoader = new DRACOLoader()
-    dracoLoader.setDecoderPath('/public/examples/jsm/libs/draco/')
+    dracoLoader.setDecoderPath('/examples/jsm/libs/draco/')
     loader.setDRACOLoader(dracoLoader)
 
-    // loader.load('/public/temp/scud_v5.3/scene.gltf', (gltf) => {
+    // loader.load('/temp/scud_v5.3/scene.gltf', (gltf) => {
     //     console.log(gltf, 44);
     //     const model = gltf.scene
     //     scene.add(model)
     // })
-    loader.load('/public/temp/buk_missile_system/scene.gltf', (gltf) => {
+    loader.load('/temp/buk_missile_system/scene.gltf', (gltf) => {
         console.log(gltf, 44);
         const model = gltf.scene
         scene.add(model)
     })
-    // loader.load('/public/temp/desert_scud_missile_launcher.glb', (gltf) => {
+    // loader.load('/temp/desert_scud_missile_launcher.glb', (gltf) => {
     //     console.log(gltf, 44);
     //     const model = gltf.scene
     //     scene.add(model)
@@ -85,6 +85,4 @@ onMounted(() => {
 })
 </script>
     
-<style>
-
-</style>
+<style></style>
