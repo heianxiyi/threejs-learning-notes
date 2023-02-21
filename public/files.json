@@ -1,6 +1,8 @@
 {
 	"add": [
 		"add_new_page",
+		"add_tank",
+		"add_galaxy",
 		"add_fire_ring",
 		"add_model_missile_carrier",
 		"add_rickAndMorty",

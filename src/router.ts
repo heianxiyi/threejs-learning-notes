@@ -14,6 +14,8 @@ import AddAnimationRotationStar from "./views/add_animation_rotation_star.vue";
 import AddRickandmorty from "./views/add_rickAndMorty.vue";
 import AddModelMissileCarrier from "./views/add_model_missile_carrier.vue";
 import AddFireRing from "./views/add_fire_ring.vue";
+import AddGalaxy from "./views/add_galaxy.vue";
+import AddTank from "./views/add_tank.vue";
 export const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -91,6 +93,16 @@ export const router = createRouter({
       path: "/add_fire_ring",
       name: "add_fire_ring",
       component: AddFireRing,
+    },
+    {
+      path: "/add_galaxy",
+      name: "add_galaxy",
+      component: AddGalaxy,
+    },
+    {
+      path: "/add_tank",
+      name: "add_tank",
+      component: AddTank,
     },
   ],
 });
