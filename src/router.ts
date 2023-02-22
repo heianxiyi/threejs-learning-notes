@@ -17,6 +17,7 @@ import AddFireRing from "./views/add_fire_ring.vue";
 import AddGalaxy from "./views/add_galaxy.vue";
 import AddTank from "./views/add_tank.vue";
 import AddPlanePipeline from "./views/add_plane_pipeline.vue";
+import AddRobot from "./views/add_robot.vue";
 export const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -109,6 +110,11 @@ export const router = createRouter({
       path: "/add_plane_pipeline",
       name: "add_plane_pipeline",
       component: AddPlanePipeline,
+    },
+    {
+      path: "/add_robot",
+      name: "add_robot",
+      component: AddRobot,
     },
   ],
 });

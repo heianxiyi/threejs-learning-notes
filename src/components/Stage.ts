@@ -17,7 +17,7 @@ export default class Stage {
     this.renderer.outputEncoding = THREE.sRGBEncoding;
     this.renderer.setSize(clientWidth, clientHeight, false);
     this.camera = new THREE.PerspectiveCamera(
-      30,
+      45,
       clientWidth / clientHeight,
       0.1,
       1000
