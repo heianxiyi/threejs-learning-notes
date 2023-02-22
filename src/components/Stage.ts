@@ -17,7 +17,7 @@ export default class Stage {
     this.renderer.outputEncoding = THREE.sRGBEncoding;
     this.renderer.setSize(clientWidth, clientHeight, false);
     this.camera = new THREE.PerspectiveCamera(
-      45,
+      30,
       clientWidth / clientHeight,
       0.1,
       1000
@@ -26,7 +26,7 @@ export default class Stage {
     this.camera.lookAt(0, 0, 0);
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.beforeRender = (time) => {
-      console.log(time);
+      // console.log(time);
     };
   }
   // 响应式布局

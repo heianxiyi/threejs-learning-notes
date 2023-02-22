@@ -16,6 +16,7 @@ import AddModelMissileCarrier from "./views/add_model_missile_carrier.vue";
 import AddFireRing from "./views/add_fire_ring.vue";
 import AddGalaxy from "./views/add_galaxy.vue";
 import AddTank from "./views/add_tank.vue";
+import AddPlanePipeline from "./views/add_plane_pipeline.vue";
 export const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -103,6 +104,11 @@ export const router = createRouter({
       path: "/add_tank",
       name: "add_tank",
       component: AddTank,
+    },
+    {
+      path: "/add_plane_pipeline",
+      name: "add_plane_pipeline",
+      component: AddPlanePipeline,
     },
   ],
 });

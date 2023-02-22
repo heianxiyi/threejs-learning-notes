@@ -153,13 +153,13 @@ onMounted(() => {
 
     // 建立一条路径，之后会让坦克沿此路径移动
     const curve = new THREE.SplineCurve([
-        new THREE.Vector2(-6, 5),
-        new THREE.Vector2(-6, -4),
-        new THREE.Vector2(8, 0),
-        new THREE.Vector2(-6, 12),
-        new THREE.Vector2(-6, 5)
+        new THREE.Vector2(6, 0),
+        new THREE.Vector2(0, 6),
+        new THREE.Vector2(-6, 0),
+        new THREE.Vector2(0, -6),
+        new THREE.Vector2(6, 0)
     ])
-    const points = curve.getPoints(50)
+    const points = curve.getPoints(5000)
     const geometry = new THREE.BufferGeometry().setFromPoints(points)
     const material = new THREE.LineBasicMaterial({ color: 0xff0000 })
     const splineObject = new THREE.Line(geometry, material)
