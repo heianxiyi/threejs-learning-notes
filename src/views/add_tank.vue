@@ -174,8 +174,8 @@ onMounted(() => {
     // 目标位
     const targetPosition = new THREE.Vector3()
     // 用dat.gui切换相机
-    const gui = new GUI({ autoPlace: false })
-    gui.domElement.style = 'position:absolute;'
+    const gui = new GUI({ autoPlace: false });
+    (gui.domElement as any).style = 'position:absolute;'
     // gui.domElement
     const cameras = new Map([
         ['camera', camera],
