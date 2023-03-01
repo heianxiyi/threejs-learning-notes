@@ -12,7 +12,7 @@
       ]" @click="
   displayValue = '';
 refInput?.focus();
-  "></div>
+                            "></div>
     </div>
     <div v-if="list" class="overflow-y-auto flex-1">
       <div class="px-15px" v-for="group in data">
@@ -21,7 +21,7 @@ refInput?.focus();
         </div>
         <div class="children">
           <div class="mb-16px overflow-hidden group cursor-pointer border-rd-4px border-3 border-solid border-transparent"
-            :class="{
+            :id="route.name === item ? 'currentBox' : undefined" :class="{
               '!border-#049ef4 border-3 border-solid': route.name === item,
             }" v-for="item in group.data" @click="go(item)">
             <div class="leading-0">
@@ -38,7 +38,7 @@ refInput?.focus();
 </template>
 
 <script setup lang="ts">
-import { ref, onBeforeMount, computed, unref } from "vue";
+import { ref, onBeforeMount, computed, unref, onMounted, nextTick } from "vue";
 import { useRouter, useRoute } from "vue-router";
 interface listProps {
   [key: string]: string[];
@@ -93,6 +93,12 @@ onBeforeMount(() => {
     .then((res) => {
       list.value = res;
       displayValue.value = route.query.q ? (route.query.q as string) : "";
+      nextTick(() => {
+        const currentBox = document.getElementById('currentBox');
+        currentBox && currentBox.scrollIntoView({
+          behavior: 'smooth',
+        });
+      })
     });
 });
 </script>

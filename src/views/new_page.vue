@@ -1,87 +1,43 @@
 <template>
-    <div w="100%" h="100%" ref="container"></div>
+    <div w="100%" h="100%" ref="container">
+
+    </div>
 </template>
     
 <script setup lang='ts'>
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment';
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { onMounted, ref } from 'vue';
+import { onMounted, Ref, ref, unref } from 'vue';
 
-const container = ref<HTMLElement>()
+const container = ref() as Ref<HTMLElement>;
 
 onMounted(() => {
-    const w = container.value?.offsetWidth || 0;
-    const h = container.value?.offsetHeight || 0;
+    const canvas = unref(container);
+    const { clientWidth, clientHeight } = canvas;
 
     const scene = new THREE.Scene();
-    // scene.background = new THREE.Color(0xbbbbbb)
-    const camera = new THREE.PerspectiveCamera(4, w / h)
-    camera.lookAt(scene.position)
-    camera.position.set(196, 113, -194);
+    const renderer = new THREE.WebGL1Renderer({ antialias: true });
+    renderer.setSize(clientWidth, clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    canvas.appendChild(renderer.domElement);
 
-    const axesHelper = new THREE.AxesHelper(10)
-    scene.add(axesHelper);
+    const camera = new THREE.PerspectiveCamera(30, clientWidth / clientHeight);
+    camera.position.set(0, 0, 12);
 
-    const light = new THREE.AmbientLight(0xffffff, .4);
-    scene.add(light)
+    const spheregeometry = new THREE.SphereGeometry(1, 32, 32);
+    const a = new THREE.Points(spheregeometry, new THREE.PointsMaterial({ size: 0.02 }));
+    scene.add(a)
 
-    const point = new THREE.PointLight(0xffffff, 1, 100)
-    scene.add(point)
+    const controls = new OrbitControls(camera, renderer.domElement);
 
-    const grid = new THREE.GridHelper(500, 100, 0xffffff, 0xffffff)
-    scene.add(grid);
-
-    const renderer = new THREE.WebGL1Renderer()
-    renderer.setSize(w, h)
-    renderer.outputEncoding = THREE.sRGBEncoding;
-    container.value?.appendChild(renderer.domElement)
-
-    // const environment = new RoomEnvironment()
-    // const pmremGenerator = new THREE.PMREMGenerator(renderer)
-    // scene.environment = pmremGenerator.fromScene(environment).texture;
-
-    const controls = new OrbitControls(camera, renderer.domElement)
-
-    window.onresize = function () {
-        const w = container.value?.offsetWidth || 0;
-        const h = container.value?.offsetHeight || 0;
-        renderer.setSize(w, h)
-        camera.aspect = w / h
-        camera.updateProjectionMatrix()
+    const animate = () => {
+        controls.update();
+        a.rotation.y += 0.02
+        renderer.render(scene, camera);
     }
 
-    const loader = new GLTFLoader()
-    const dracoLoader = new DRACOLoader()
-    dracoLoader.setDecoderPath('/examples/jsm/libs/draco/')
-    loader.setDRACOLoader(dracoLoader)
+    renderer.setAnimationLoop(animate)
 
-    // loader.load('/temp/scud_v5.3/scene.gltf', (gltf) => {
-    //     console.log(gltf, 44);
-    //     const model = gltf.scene
-    //     scene.add(model)
-    // })
-    loader.load('/temp/buk_missile_system/scene.gltf', (gltf) => {
-        const model = gltf.scene
-        scene.add(model)
-    });
-    // loader.load('/temp/desert_scud_missile_launcher.glb', (gltf) => {
-    //     console.log(gltf, 44);
-    //     const model = gltf.scene
-    //     scene.add(model)
-    // })
-
-    (window as any).camera = camera;
-
-    function render() {
-        renderer.render(scene, camera)
-        controls.update()
-        requestAnimationFrame(render)
-    }
-
-    render()
 })
 </script>
     

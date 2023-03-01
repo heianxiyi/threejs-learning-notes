@@ -1,6 +1,9 @@
 {
 	"add": [
 		"add_new_page",
+		"add_butterfly",
+		"add_solar_system",
+		"add_drive_car",
 		"add_robot",
 		"add_plane_pipeline",
 		"add_tank",

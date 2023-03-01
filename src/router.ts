@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import defaultView from "./components/defaultView.vue";
 import WebglAnimationKeyframes from "./views/webgl_animation_keyframes.vue";
 import WebglTitanCard from "./views/webgl_titan_card.vue";
@@ -18,8 +18,11 @@ import AddGalaxy from "./views/add_galaxy.vue";
 import AddTank from "./views/add_tank.vue";
 import AddPlanePipeline from "./views/add_plane_pipeline.vue";
 import AddRobot from "./views/add_robot.vue";
+import AddDriveCar from "./views/add_drive_car.vue";
+import AddSolarSystem from "./views/add_solar_system.vue";
+import AddButterfly from "./views/add_butterfly.vue";
 export const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes: [
     {
       path: "/",
@@ -115,6 +118,21 @@ export const router = createRouter({
       path: "/add_robot",
       name: "add_robot",
       component: AddRobot,
+    },
+    {
+      path: "/add_drive_car",
+      name: "add_drive_car",
+      component: AddDriveCar,
+    },
+    {
+      path: "/add_solar_system",
+      name: "add_solar_system",
+      component: AddSolarSystem,
+    },
+    {
+      path: "/add_butterfly",
+      name: "add_butterfly",
+      component: AddButterfly,
     },
   ],
 });
